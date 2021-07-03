@@ -1,27 +1,10 @@
-class Brave
+require './brave'
+require './monster'
+require './games_controller'
 
-  attr_reader :name, :offense, :defense
+games_controller = GamesController.new
 
-  attr_accessor :hp
+terry = Brave.new(name: "テリー", hp: 500, offense: 150, defense: 100)
+slime = Monster.new(name: "スライム", hp: 250, offense: 200, defense: 100)
 
-  def initialize(**params)
-    @name = params[:name]
-    @hp = params[:hp]
-    @offense = params[:offense]
-    @defense = params[:defense]
-  end
-
-  brave = Brave.new(name: "リンク", hp: 500, offense: 150, defense: 100)
-
-  puts <<~TEXT
-  NAME：#{brave.name}
-  HP：#{brave.hp}
-  OFFENSE：#{brave.offense}
-  DEFENSE：#{brave.defense}
-  TEXT
-
-  brave.hp -= 30
-
-  puts "#{brave.name}はダメージを受けた!　残りHPは#{brave.hp}だ"
-
-end
+games_controller.battle(brave: terry, monster: slime)
